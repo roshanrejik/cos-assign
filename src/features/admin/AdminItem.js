@@ -21,16 +21,7 @@ const AdminItem=(props)=>{
                                 <i className="zmdi zmdi-pin mr-2">First Name : {admin.firstName}</i> 
                             </li>
                             </div>
-                            <div>
-                            <li className="mr-md-4">
-                                <i className="zmdi zmdi-money mr-2"> Last Name :  {admin.lastName} </i> 
-                            </li>
-                            </div>
-                            <div>
-                            <li className="mr-md-4">
-                                <i className="zmdi zmdi-money mr-2"> Email :  {admin.person.email} </i> 
-                            </li>
-                            </div>
+                          
                         </ul>
                     </div>
                 </div>
