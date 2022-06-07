@@ -42,7 +42,7 @@ const AdminEditForm = (props) => {
                 </div>
                 <Modal show={EditForm ? true : false} size="lg" aria-labelledby="contained-modal-title-vcenter" centered>
                     <Modal.Header>
-                        <Modal.Title>Add Admin Details</Modal.Title>
+                        <Modal.Title>Edit Admin Details</Modal.Title>
                         <Modal.Title><img src='https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-close-512.png' style={{ 'width': '20px' }} onClick={handleEditForm} alt='close' /></Modal.Title>
                     </Modal.Header>
                     <Formik initialValues={initialValues} validationSchema={validationSchema}  onSubmit={onSubmit}>

@@ -43,6 +43,11 @@ export const DeleteAdmin=createAsyncThunk(
     }}).then(res=>{return id}))))
 
 //Client------------------------------------------------------------------------------------------
+export const GetClientsByName=createAsyncThunk(
+    "get/getAllClientbyName",
+    async (filterBy)=>(await (await axios.get(`${BASE_URL}/clients`,{params: {page:0,limit:10,name:filterBy},headers: {
+        'Authorization': `  ${localStorage.getItem('token')}`
+      }})).data))
 export const GetAllClients=createAsyncThunk(
     "get/getAllClient",
     async (page)=>(await (await axios.get(`${BASE_URL}/clients`,{ params: {page:page?page:0,limit:10},headers: {
@@ -54,12 +59,18 @@ export const AddClient=createAsyncThunk(
 async (formData)=>(await (await axios.post(`${BASE_URL}/clients`,formData,{ headers: {
     'Authorization': `  ${localStorage.getItem('token')}`
     }})).data))
-
+export const GetUpdatedClients=createAsyncThunk(
+    "get/getUpdatedAdmins",
+    async (page)=>(await (await axios.get(`${BASE_URL}/clients`,{ params: {page:page?page:0,limit:10},headers: {
+        'Authorization': `  ${localStorage.getItem('token')}`
+        }})).data))
 export const UpdateClient=createAsyncThunk(
     "put/puttUpdateClient",
-    async ({id,formData})=>(await (await axios.put(`http://23.21.204.21/api/v1/clients/${id}`,formData,{ headers: {
+    async ({id,formData,handleShowClient})=>(await (await axios.put(`http://23.21.204.21/api/v1/clients/${id}`,formData,{ headers: {
         'Authorization': `  ${localStorage.getItem('token')}`
-        }}).then(res=>{return {id,formData}}))))
+        }}).then(res=>{
+            handleShowClient()
+            return {id,formData}}))))
 export const DeleteClient=createAsyncThunk(
     "delete/deleteAdmin",
     async (id)=>(await (await axios.delete(`${BASE_URL}/clients/${id}`,{ headers: {

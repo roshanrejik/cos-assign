@@ -1,10 +1,19 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {GetAllClients,AddClient,UpdateClient, DeleteClient} from '../../services'
+import {GetAllClients,AddClient,UpdateClient, DeleteClient,GetClientsByName,GetUpdatedClients} from '../../services'
 import swal from 'sweetalert';
 export const clientSlice=createSlice({
     name:'client',
     initialState:{clients:[],loading:false,error:null},
     extraReducers:{
+        [GetClientsByName.fulfilled]:(state,action)=>{
+            state.clients=action.payload.data
+        },
+        [GetClientsByName.rejected]:(state)=>{console.log('not found');},
+        [GetUpdatedClients.fulfilled]:(state,action)=>{
+            state.clients=[...action.payload.data]
+        },
+        [GetUpdatedClients.rejected]:(state)=>{console.log('not found');},
+
         [GetAllClients.fulfilled]:(state,action)=>{
             state.clients.push(...action.payload.data)
         },

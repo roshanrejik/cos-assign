@@ -10,7 +10,7 @@ const AdminItem=(props)=>{
                     </div>
                     <div className="job-content">
                         <h5 className="text-center text-md-left">{admin.firstName} {admin.lastName}</h5>
-                        <ul className="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                        {/* <ul className="d-md-flex flex-wrap text-capitalize ff-open-sans">
                         <div >
                            <li className="mr-md-4">
                                 <i className="zmdi zmdi-time mr-2"> Id : {admin.id}</i> 
@@ -22,7 +22,7 @@ const AdminItem=(props)=>{
                             </li>
                             </div>
                           
-                        </ul>
+                        </ul> */}
                     </div>
                 </div>
                 <div className="job-right my-4 flex-shrink-0">

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { withRouter } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import ClientEditForm from "./ClientEditForm";
-import { DeleteClient} from "../../services";
+import { DeleteClient,GetUpdatedClients} from "../../services";
 import { useDispatch } from "react-redux";
 const ClientShowDetails=(props)=>{
     const {id}=props.match.params
@@ -22,13 +22,14 @@ const ClientShowDetails=(props)=>{
         setEditForm(!EditForm)
     }
     const handleShowClient=async()=> {
-         setTimeout(() => {
-            axios.get(`http://23.21.204.21:8080/api/v1/clients/${id}`,{ headers: {
-                'Authorization': `  ${localStorage.getItem('token')}`
-                }}).then(res=>setShowClient(res.data))
-                .catch(err=>console.log(err.message))
-         }, 1000);
-    }
+         
+        await axios.get(`http://23.21.204.21:8080/api/v1/clients/${id}`,{ headers: {
+             'Authorization': `  ${localStorage.getItem('token')}`
+             }}).then(res=>{ setShowClient(res.data) 
+                 dispatch(GetUpdatedClients()) })
+             .catch(err=>console.log(err.message))
+      
+ }
     const dispatch=useDispatch()
     const handleDelete=()=>{
         dispatch(DeleteClient(id))

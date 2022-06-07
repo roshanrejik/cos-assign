@@ -1,6 +1,6 @@
 import React,{ useEffect, useState,useRef } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { GetAllClients } from "../../services"
+import { GetAllClients, GetClientsByName } from "../../services"
 import ClientItem from "./ClientItem"
 import {Form,FormControl} from 'react-bootstrap' 
 const ClientList = (props) => {
@@ -22,7 +22,8 @@ const ClientList = (props) => {
     const {clients}=useSelector(state=>state.client)
     const [searchKey,setSearchKey]=useState('')
     const handleSearch=(e)=>{
-        setSearchKey(e.target.value.toLowerCase())    
+            dispatch(GetClientsByName(e.target.value.toLowerCase()))
+            setSearchKey(e.target.value.toLowerCase())    
     }
     return (
         <div className="border rounded shadow"  onScroll={onScroll} ref={listInnerRef} style={{'height': '88vh', overflowY: "auto"}} >
